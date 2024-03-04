@@ -10,7 +10,8 @@ import img6  from '../../../assets/home/06.png'
 
 const Banner = () => {
     return (
-        <Carousel className="Banner" autoPlay={true} showArrows={true} showStatus={false} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}>
+        <section className="banner">
+            <Carousel className="Banner" autoPlay={true} showArrows={true} showStatus={false} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}>
                 <div>
                     <img src={img1} />
                     
@@ -36,6 +37,7 @@ const Banner = () => {
                     
                 </div>
             </Carousel>
+        </section>
     );
 };
 

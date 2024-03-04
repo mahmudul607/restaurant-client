@@ -1,0 +1,12 @@
+.menu-items .menu-icons{
+    width: 110px;
+    height:110px;
+    background-color: #D99904;
+    border-radius: 0 200px 200px 200px;
+    transition: all 0.5s ease-in-out;
+    
+}
+.menu-items:hover .menu-icons{
+    transform: rotate(45deg);
+    transition: all 0.5s ease-in-out;
+}

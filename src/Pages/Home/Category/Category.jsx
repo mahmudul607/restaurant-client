@@ -13,7 +13,7 @@ import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
 
 const Category = () => {
     return (
-        <>
+        <section>
         <SectionTitle
         subHeader={"From 11:00am to 10:00pm"}
         header={"ORDER ONLINE"}
@@ -51,7 +51,7 @@ const Category = () => {
         </SwiperSlide>
         
       </Swiper>
-    </>
+    </section>
     );
 };
 
