@@ -5,6 +5,7 @@ import PopularMenu from "../PopularMenu/PopularMenu";
 
 import Recommends from "../Recommeds/Recommends";
 import ServiceBanner from "../ServiceBanner/ServiceBanner";
+import Testimonial from "../Testimonial/Testimonial";
 
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
             </div>
             <Recommends></Recommends>
             <FeatureMenu></FeatureMenu>
+            <Testimonial></Testimonial>
         </div>
     );
 };
