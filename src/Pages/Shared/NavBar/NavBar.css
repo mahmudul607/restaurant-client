@@ -1,0 +1,4 @@
+:where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn):focus{
+    color: orange;
+    font-weight: 800;
+}

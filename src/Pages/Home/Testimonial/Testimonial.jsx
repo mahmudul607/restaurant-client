@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import '@smastrom/react-rating/style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
+import {  faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 
 
 
