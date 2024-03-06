@@ -1,0 +1,21 @@
+.foodTab .swiper-pagination .swiper-pagination-bullet {
+   
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    color:white;
+}
+.foodTab .swiper-pagination .swiper-pagination-bullet-active {
+   
+   
+    color:black;
+}
+
+.foodTab .swiper-pagination{
+   position: absolute;
+   bottom: 0;
+
+}
+.foodTab .swiper{
+    padding-bottom: 4rem;
+}

@@ -5,12 +5,13 @@ import 'react-tabs/style/react-tabs.css';
 import { useState } from "react";
 import FoodTab from "./FoodTab/FoodTab";
 import { useParams } from "react-router-dom";
-import useCategory from "../../hooks/useCategory";
+
 
 
 const Foods = () => {
-    const categories = useCategory();
-    const [offers, desserts, pizzas, salads, soups, drinks] = categories;
+    
+    // const categories = useCategory();
+    // const [offers, desserts, pizzas, salads, soups, drinks] = categories;
     const allCategories = ['offers', 'desserts', 'pizzas', 'salads', 'soups', 'drinks'];
     const {category} = useParams()
     let initialIndex = allCategories.indexOf(category);
@@ -36,22 +37,22 @@ const Foods = () => {
 
                     </TabList>
                     <TabPanel>
-                        <FoodTab items={offers}></FoodTab>
+                        <FoodTab items={'offered'} ></FoodTab>
                     </TabPanel>
                     <TabPanel>
-                        <FoodTab items={desserts}></FoodTab>
+                        <FoodTab items={'dessert'} ></FoodTab>
                     </TabPanel>
                     <TabPanel>
-                        <FoodTab items={pizzas}></FoodTab>
+                        <FoodTab items={'pizza'} ></FoodTab>
                     </TabPanel>
                     <TabPanel>
-                        <FoodTab items={salads}></FoodTab>
+                        <FoodTab items={'salad'} ></FoodTab>
                     </TabPanel>
                     <TabPanel>
-                        <FoodTab items={soups}></FoodTab>
+                        <FoodTab items={'soup'} ></FoodTab>
                     </TabPanel>
                     <TabPanel>
-                        <FoodTab items={drinks}></FoodTab>
+                        <FoodTab items={'drinks'} ></FoodTab>
                     </TabPanel>
                 </Tabs>
             </div>
