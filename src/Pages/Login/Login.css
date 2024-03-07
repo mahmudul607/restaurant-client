@@ -1,0 +1,25 @@
+@media  (max-width: 767.99px) {
+
+    .login .hero, .hero{
+        color: white;
+        background: transparent;
+        background-image: url('../../assets/others/authentication2.png');
+        background-repeat: no-repeat;
+        background-size:100%;
+        background-position: center;
+    }
+    .login .hero .card, .hero .card{
+        opacity: 0.95;
+    }
+    .login .hero .card-body, .hero .card-body {
+        padding: 0;
+    }
+}
+
+@media (max-width: 240px) {
+    .login .hero .card-body {
+        padding: 0;
+        width: 100%;
+    }
+    
+}

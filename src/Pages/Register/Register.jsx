@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import loginImg from '../../assets/others/authentication2.png'
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+    const {createAccountWithEmailAndPassword} = useContext(AuthContext);
 
     const handleRegisterData = (e) =>{
         e.preventDefault();
@@ -11,17 +14,26 @@ const Register = () => {
         const password = form.password.value;
 
         console.log(name, email, password);
+        createAccountWithEmailAndPassword(email, password)
+        .then(user =>{
+            console.log(user)
+            alert("user created successfully")
+        })
+        .catch(err =>{
+            console.log(err);
+            alert(err.message);
+        })
 
 
     }
     return (
-        <div className="hero  bg-base-200 ">
-            <div className="hero-content flex-col-reverse lg:flex-row-reverse border-box box-content  shadow-2xl md:mx-24 md:px-8 my-4">
-                <div className="text-center lg:w-1/2 lg:text-left">
+        <div className="hero xxs:block pt-4 bg-base-200 ">
+            <div className="hero-content py-0  flex-col-reverse md:flex-row-reverse border-box box-content  shadow-2xl mx-2 px-2  md:mx-24 md:px-8 my-4">
+                <div className="text-center md:w-2/5 md:text-left hidden md:block">
                     
                    <img src={loginImg} alt="image" />
                 </div>
-                <div className="card w-full  lg:w-1/2  shadow-2xl bg-base-100 pb-4 ">
+                <div className="card w-full  md:w-3/5  shadow-2xl bg-base-100 pb-4 ">
                 <div className="text-center pt-2">
                 <h1 className="text-4xl font-bold">Sign Up</h1>
                 </div>
