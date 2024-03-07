@@ -1,47 +1,70 @@
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/others/authentication2.png'
-import { FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import './Login.css'
+import { useForm } from 'react-hook-form';
 
 
 
 const Login = () => {
-    const { signInAccountWithEmailAndPassword, signInWithGoogleProvider } = useContext(AuthContext);
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { loginUserAccount, signInWithGoogleProvider } = useContext(AuthContext);
     const [disabled, setDisabled] = useState(true);
     const captchaRef = useRef(null);
     const location = useLocation();
     const navigate = useNavigate();
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
 
-    const handleLoginData = (e) => {
-        e.preventDefault();
 
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
+    // -----------------------handle login data here-----------------------------------
 
-        console.log(email, password);
-        signInAccountWithEmailAndPassword(email, password)
+    // react hook form
+    const onSubmit = (data) => {
+        console.log(data)
+        const { email, password } = data;
+        loginUserAccount(email, password)
             .then(user => {
                 console.log(user)
                 alert("Login successful")
+                navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
                 alert(err.message)
             })
 
-
-
     }
+
+
+    // const handleLoginData = (e) => {
+    //     e.preventDefault();
+    //     const form = e.target;
+    //     const email = form.email.value;
+    //     const password = form.password.value;
+
+    //     console.log(email, password);
+    //     loginUserAccount(email, password)
+    //         .then(user => {
+    //             console.log(user)
+    //             alert("Login successful")
+    //             navigate(location?.state ? location.state : '/')
+    //         })
+    //         .catch(err => {
+    //             alert(err.message)
+    //         })
+
+
+
+    // }
     // sign in with google provider using popup window
     const handleSignInWithGooglePopup = () => {
 
@@ -72,31 +95,47 @@ const Login = () => {
         }
 
     }
+
+    // --------------------------------------------End handle login data----------------- 
     return (
         <div className='login'>
-            <div className="hero xxs:block pt-4 bg-base-200 ">
-                <div className="hero-content flex-col-reverse md:flex-row border-box box-content  shadow-2xl md:mx-24 mx-2 px-2 md:px-8 my-4">
+            <div className="hero min-h-screen xxs:block pt-4 bg-base-200 ">
+                <div className="hero-content flex-col-reverse md:flex-row border-box box-content  shadow-2xl md:mx-24 mx-2 px-2 md:px-8 ">
                     <div className="text-center md:w-2/5  md:text-left hidden md:block   ">
-
                         <img src={loginImg} alt="image" />
                     </div>
                     <div className="card w-full  md:w-3/5   shadow-2xl bg-base-100 pb-4 ">
                         <div className="text-center pt-2">
                             <h1 className="text-4xl font-bold">Login</h1>
                         </div>
-                        <form className="card-body py-0" onSubmit={handleLoginData}>
+                        <form className="card-body py-0" onSubmit={handleSubmit(onSubmit)}>
 
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="email" name="email" className="input input-bordered" required />
+                                <input type="email" placeholder="email" name="email" {...register("email", { require: true })} className="input input-bordered" required />
+                                {errors.email && <span>Email field is required</span>}
                             </div>
+                            
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="password" name="password" className="input input-bordered" required />
+                                <div className="relative">
+                                <input type={show? 'text':'password'} placeholder="password" {...register("password", { require: true})} name="password" className="input input-bordered w-full" />
+                                {errors.password?.type === "required" && (
+                                    <p role="alert">Password is required</p>
+                                )}
+                                 <span onClick={()=>setShow(!show)} className="absolute  right-5 top-4">
+                                    {
+                                        show === true ? <FaEye/> : <FaEyeSlash/>
+                                    }
+                                    
+                                    
+                                 </span>
+                            </div>
+                               
 
                             </div>
                             <div className="form-control">

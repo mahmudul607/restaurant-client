@@ -1,6 +1,12 @@
+.login .hero, .register .hero{
+    background-image: url(../../assets/others/authentication.png);
+}
+
+
+
 @media  (max-width: 767.99px) {
 
-    .login .hero, .hero{
+    .login .hero, .register .hero{
         color: white;
         background: transparent;
         background-image: url('../../assets/others/authentication2.png');
@@ -8,16 +14,16 @@
         background-size:100%;
         background-position: center;
     }
-    .login .hero .card, .hero .card{
+    .login .hero .card, .register .hero .card{
         opacity: 0.95;
     }
-    .login .hero .card-body, .hero .card-body {
+    .login .hero .card-body, .register .hero .card-body {
         padding: 0;
     }
 }
 
 @media (max-width: 240px) {
-    .login .hero .card-body {
+    .login .hero .card-body, .register .hero .card-body {
         padding: 0;
         width: 100%;
     }
