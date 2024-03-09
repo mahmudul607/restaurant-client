@@ -5,10 +5,12 @@ import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import './Login.css'
 import { useForm } from 'react-hook-form';
+import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2';
 
 
 
@@ -16,7 +18,10 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { loginUserAccount, signInWithGoogleProvider } = useContext(AuthContext);
     const [disabled, setDisabled] = useState(true);
-    const captchaRef = useRef(null);
+    const [captchaValue, setCaptchaValue] = useState('');
+    const [captchaValidated, setCaptchaValidated] = useState(false);
+    // const [captchaReloaded, setCaptchaReloaded] = useState(false);
+    const [loginError, setLoginError] = useState(null);
     const location = useLocation();
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
@@ -30,41 +35,28 @@ const Login = () => {
 
     // react hook form
     const onSubmit = (data) => {
-        console.log(data)
+       
+       
+        setLoginError(null);
         const { email, password } = data;
         loginUserAccount(email, password)
-            .then(user => {
-                console.log(user)
-                alert("Login successful")
+            .then(()=> {
+                
+               
+                setLoginError('success')
+                
+
                 navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
-                alert(err.message)
+                
+               
+                setLoginError('Invalid User or Password')
+                console.log(err)
             })
 
     }
 
-
-    // const handleLoginData = (e) => {
-    //     e.preventDefault();
-    //     const form = e.target;
-    //     const email = form.email.value;
-    //     const password = form.password.value;
-
-    //     console.log(email, password);
-    //     loginUserAccount(email, password)
-    //         .then(user => {
-    //             console.log(user)
-    //             alert("Login successful")
-    //             navigate(location?.state ? location.state : '/')
-    //         })
-    //         .catch(err => {
-    //             alert(err.message)
-    //         })
-
-
-
-    // }
     // sign in with google provider using popup window
     const handleSignInWithGooglePopup = () => {
 
@@ -80,25 +72,94 @@ const Login = () => {
 
     }
 
-    const handleCaptcha = (e) => {
-        e.preventDefault();
-        const user_captcha_value = captchaRef.current.value;
+    useEffect(()=>{
 
-        if (validateCaptcha(user_captcha_value)) {
-
+        if (validateCaptcha(captchaValue)) {
+            setCaptchaValidated(true);
             setDisabled(false);
         }
 
         else {
-
+            setCaptchaValidated(false);
             setDisabled(true);
         }
 
+    },[captchaValue])
+    useEffect(()=>{
+
+        if (captchaValidated) {
+            
+            setDisabled(false);
+        }
+
+        else {
+           
+            setDisabled(true);
+        }
+
+    },[captchaValidated])
+
+
+
+if(document.getElementById('reload_href')){
+    document.getElementById('reload_href').addEventListener('click', () => {
+        loadCaptchaEnginge(6); // Reload captcha
+        
+        setCaptchaValidated(false); // Reset captcha validation state
+        setDisabled(true); // Disable submit button after reloading captcha
+    });
+
+}
+   
+    const handleCaptcha = (e) => {
+        e.preventDefault();
+        setCaptchaValue(e.target.value);
+       
+        
+
+
     }
+
+
+    // handleShowPassword
+    
+    const handleShowPassword = (e)=>{
+        e.preventDefault();
+        setShow(!show);
+       setLoginError(null)
+    }
+
+    // alert
+if(loginError === 'success'){
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: 'Login Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+}
+else if(loginError) {
+    Swal.fire({
+        icon: "error",
+        title: "Failed to login", loginError,
+        text: loginError,
+        
+      });
+      
+
+}
+    
+
+      
 
     // --------------------------------------------End handle login data----------------- 
     return (
         <div className='login'>
+            <Helmet>
+            <title>Foods Corner | Login</title>
+            </Helmet>
             <div className="hero min-h-screen xxs:block pt-4 bg-base-200 ">
                 <div className="hero-content flex-col-reverse md:flex-row border-box box-content  shadow-2xl md:mx-24 mx-2 px-2 md:px-8 ">
                     <div className="text-center md:w-2/5  md:text-left hidden md:block   ">
@@ -127,7 +188,7 @@ const Login = () => {
                                 {errors.password?.type === "required" && (
                                     <p role="alert">Password is required</p>
                                 )}
-                                 <span onClick={()=>setShow(!show)} className="absolute  right-5 top-4">
+                                 <span onClick={handleShowPassword} className="absolute  right-5 top-4 cursor-pointer">
                                     {
                                         show === true ? <FaEye/> : <FaEyeSlash/>
                                     }
@@ -143,10 +204,10 @@ const Login = () => {
                                     <span className="label-text">
                                         <LoadCanvasTemplate /></span>
                                 </label>
-                                <div className='relative'>
-                                    <input type="text" placeholder="Captcha" ref={captchaRef} name="captcha" id='user_captcha_input' className="input input-bordered w-full" required />
-                                    <button className='btn btn-outline absolute right-0 border-y-0' onClick={handleCaptcha}>Validate</button>
-                                </div>
+                               
+                                    <input type="text" onBlur={handleCaptcha} placeholder="Captcha" name="captcha" id='user_captcha_input' className="input input-bordered w-full" required />
+                                  
+                               
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
@@ -156,11 +217,11 @@ const Login = () => {
                                 <input type="submit" className="btn btn-primary" disabled={disabled} value="Submit" />
                             </div>
                             <div>
-                                <p>New here? <Link to={'/register'}>Create a New Account</Link></p>
+                                <p>New here? <Link to={'/register'} className='text-green-600 font-semibold'>Create a New Account</Link></p>
                                 <div className='flex pt-6 gap-8 justify-center text-2xl'>
-                                    <span className="w-12 h-12 border rounded-full  border-black p-[10px] text-[#4285f4]" onClick={handleSignInWithGooglePopup}><FaGoogle /></span>
-                                    <button className="w-12 h-12 border rounded-full  border-black p-[10px] text-[#0866ff]"> <FaFacebookF /></button>
-                                    <button className="w-12 h-12 border rounded-full  border-black p-[10px]"> <FaGithub /></button>
+                                    <span  className="w-12 h-12 border rounded-full cursor-pointer border-black p-[10px] text-[#4285f4]" onClick={handleSignInWithGooglePopup}><FaGoogle /></span>
+                                    <span className="w-12 h-12 border rounded-full cursor-pointer border-black p-[10px] text-[#0866ff]"> <FaFacebookF /></span>
+                                    <span className="w-12 h-12 border rounded-full cursor-pointer border-black p-[10px]"> <FaGithub /></span>
                                 </div>
                             </div>
                         </form>

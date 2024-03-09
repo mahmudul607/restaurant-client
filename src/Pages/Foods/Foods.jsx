@@ -5,6 +5,7 @@ import 'react-tabs/style/react-tabs.css';
 import { useState } from "react";
 import FoodTab from "./FoodTab/FoodTab";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -23,6 +24,9 @@ const Foods = () => {
    
     return (
         <div>
+             <Helmet>
+            <title>Foods Corner | Our Foods</title>
+            </Helmet>
             <Cover coverBg={foodsImg} coverTitle="Our Foods"></Cover>
 
             <div className="py-16 text-center">

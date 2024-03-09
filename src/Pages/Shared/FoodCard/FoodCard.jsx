@@ -1,7 +1,36 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 
 const FoodCard = ({foodItem}) => {
     const {name, image, price, recipe} = foodItem;
+    const {user} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const handleAddToCart =(item)=>{
+
+        if(user && user.email){
+            console.log(item);
+
+        }else{
+            Swal.fire({
+                title: "You are not logged in",
+                text: "Please login for add to cart",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Login"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', {state:{from:location}})
+                }
+              });
+            
+        }
+        
+    }
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
@@ -13,7 +42,7 @@ const FoodCard = ({foodItem}) => {
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions">
-                    <button className="btn btn-outline border-0 border-b-4 text-[#BB8506] hover:text-[#BB8506]">Add to Cart</button>
+                    <button onClick={()=>{handleAddToCart(foodItem._id)}} className="btn btn-outline border-0 border-b-4 text-[#BB8506] hover:text-[#BB8506]">Add to Cart</button>
                 </div>
             </div>
         </div>

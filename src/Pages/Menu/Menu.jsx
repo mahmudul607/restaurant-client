@@ -14,7 +14,7 @@ const Menu = () => {
     return (
         <div>
             <Helmet>
-                <title>Bistro | Menu</title>
+                <title>Foods Corner | Menu</title>
 
             </Helmet>
             <Cover coverBg={banner3} coverTitle="Our Menu"></Cover>
