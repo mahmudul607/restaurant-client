@@ -26,6 +26,8 @@ const Login = () => {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
 
+    let from = location.state?.from?.pathname || "/";
+
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
@@ -46,7 +48,7 @@ const Login = () => {
                 setLoginError('success')
                 
 
-                navigate(location?.state ? location.state : '/')
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 
@@ -61,10 +63,10 @@ const Login = () => {
     const handleSignInWithGooglePopup = () => {
 
         signInWithGoogleProvider()
-            .then(user => {
-                console.log(user)
-                alert("User signed in successfully")
-                navigate(location?.state ? location.state : '/')
+            .then(() => {
+                console.log(location.state)
+             
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 alert(err.message)

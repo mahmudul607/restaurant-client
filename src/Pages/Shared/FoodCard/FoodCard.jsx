@@ -1,6 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
+
 
 
 const FoodCard = ({foodItem}) => {
@@ -8,10 +11,33 @@ const FoodCard = ({foodItem}) => {
     const {user} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxiosSecure()
     const handleAddToCart =(item)=>{
 
         if(user && user.email){
-            console.log(item);
+           const foodItem ={
+            foodId: item._id,
+            email: user.email,
+            name:item.name,
+            image: item.image,
+            price: item.price
+           }
+           console.log(location)
+          
+           
+                    axiosSecure.post('/carts', foodItem)
+                    .then(()=>{
+                        Swal.fire({
+                            title: "Added To Your Cart!",
+                            text: "Your Selected Menu has been added.",
+                            icon: "success"
+                          });
+                    })
+                
+             
+
+         
+
 
         }else{
             Swal.fire({
@@ -24,7 +50,7 @@ const FoodCard = ({foodItem}) => {
                 confirmButtonText: "Yes, Login"
               }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login', {state:{from:location}})
+                    navigate('/login', {state:{from :location}})
                 }
               });
             
@@ -42,7 +68,7 @@ const FoodCard = ({foodItem}) => {
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions">
-                    <button onClick={()=>{handleAddToCart(foodItem._id)}} className="btn btn-outline border-0 border-b-4 text-[#BB8506] hover:text-[#BB8506]">Add to Cart</button>
+                    <button onClick={()=>{handleAddToCart(foodItem)}} className="btn btn-outline border-0 border-b-4 text-[#BB8506] hover:text-[#BB8506]">Add to Cart</button>
                 </div>
             </div>
         </div>
