@@ -7,7 +7,8 @@ import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
     const { user, logOutUser } = useContext(AuthContext);
-    const [cart] = useCart()
+    const [cart] = useCart();
+    const totalPrice = cart.reduce((total, item)=> total + item.price , 0);
 
     const navOptions = <>
         <li><Link to={'/'}>Home</Link></li>
@@ -37,7 +38,9 @@ const NavBar = () => {
                         }
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Foods Corner</a>
+                <a className="btn btn-ghost text-4xl mb-2 ">
+                    <h1 className="text-2xl font-extrabold ">Foods<br/> <span className="text-yellow-600 pl-8">Corner</span></h1>
+                </a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -52,15 +55,15 @@ const NavBar = () => {
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                <span className="badge badge-md -top-1 indicator-item bg-transparent text-info border-0">{cart.length}</span>
+                                <span className="badge badge-md -top-1 indicator-item bg-transparent text-white border-0">{cart.length}</span>
                             </div>
                         </div>
                         <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-black bg-opacity-50 text-white  shadow">
                             <div className="card-body">
                                 <span className="font-bold text-lg">Items: {cart.length}</span>
-                                <span className="text-info">Subtotal: $999</span>
+                                <span className="">Subtotal: ${totalPrice}</span>
                                 <div className="card-actions">
-                                    <button className="btn btn-primary btn-block">View cart</button>
+                                    <Link to={'/dashboard/cart'} className="btn btn-primary btn-block">View cart</Link>
                                 </div>
                             </div>
                         </div>

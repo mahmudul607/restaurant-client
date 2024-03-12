@@ -14,6 +14,7 @@ export default {
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
+      logoFont: ["Merriweather", 'serif'],
     },
   },
   plugins: [require("daisyui")],
