@@ -1,9 +1,10 @@
 
 import { RiDeleteBin6Line } from "react-icons/ri";
-import useCart from "../../hooks/useCart";
-import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useCart from "../../../hooks/useCart";
+import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
+
 
 
 const Cart = () => {
@@ -47,8 +48,8 @@ const Cart = () => {
         <div >
             <div className="cart-title">
                 <SectionTitle
-                    subHeader="My-Cart"
-                    header="Wanna and more?"
+                  subHeader="My-Cart"
+                  header="Wanna and more?"
                 ></SectionTitle>
             </div>
             <div className="cart-details">

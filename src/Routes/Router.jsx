@@ -11,7 +11,9 @@ import Register from "../Pages/Register/Register";
 import Bookings from "../Pages/Bookings/Bookings";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
-import Cart from "../Pages/Cart/Cart";
+import Cart from "../Pages/Dashboard/Cart/Cart";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+
 
   const Router = createBrowserRouter([
     {
@@ -52,6 +54,14 @@ import Cart from "../Pages/Cart/Cart";
         {
           path:"cart",
           element:<Cart></Cart>
+        },
+
+        // admin routes
+
+        {
+          path: "allUsers",
+          element: <AllUsers></AllUsers>
+
         }
       ]
     }
