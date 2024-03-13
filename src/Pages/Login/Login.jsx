@@ -1,9 +1,7 @@
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/others/authentication2.png'
-import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import { FaEye, FaEyeSlash} from "react-icons/fa";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -11,12 +9,13 @@ import './Login.css'
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import SocialLogger from '../Shared/SocialLogger/SocialLogger';
 
 
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { loginUserAccount, signInWithGoogleProvider } = useContext(AuthContext);
+    const { loginUserAccount } = useContext(AuthContext);
     const [disabled, setDisabled] = useState(true);
     const [captchaValue, setCaptchaValue] = useState('');
     const [captchaValidated, setCaptchaValidated] = useState(false);
@@ -59,20 +58,7 @@ const Login = () => {
 
     }
 
-    // sign in with google provider using popup window
-    const handleSignInWithGooglePopup = () => {
 
-        signInWithGoogleProvider()
-            .then(() => {
-                console.log(location.state)
-             
-                navigate(from, { replace: true });
-            })
-            .catch(err => {
-                alert(err.message)
-            })
-
-    }
 
     useEffect(()=>{
 
@@ -220,11 +206,7 @@ else if(loginError) {
                             </div>
                             <div>
                                 <p>New here? <Link to={'/register'} className='text-green-600 font-semibold'>Create a New Account</Link></p>
-                                <div className='flex pt-6 gap-8 justify-center text-2xl'>
-                                    <span  className="w-12 h-12 border rounded-full cursor-pointer border-black p-[10px] text-[#4285f4]" onClick={handleSignInWithGooglePopup}><FaGoogle /></span>
-                                    <span className="w-12 h-12 border rounded-full cursor-pointer border-black p-[10px] text-[#0866ff]"> <FaFacebookF /></span>
-                                    <span className="w-12 h-12 border rounded-full cursor-pointer border-black p-[10px]"> <FaGithub /></span>
-                                </div>
+                                <SocialLogger></SocialLogger>
                             </div>
                         </form>
                     </div>

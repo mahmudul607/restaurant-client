@@ -6,9 +6,15 @@ import { useForm } from "react-hook-form";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
+import SocialLogger from "../Shared/SocialLogger/SocialLogger";
+
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
 
 
 const Register = () => {
+const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, formState: { errors }} = useForm({
         defaultValues: {
             name: "",
@@ -119,13 +125,39 @@ const Register = () => {
        
         const { email, password } = data;
         createUserAccount(email, password)
-            .then(user => {
-                console.log(user)
-                alert("SignUp successful")
-                navigate(location?.state ? location.state : '/login')
+            .then(result => {
+                const userInfo ={
+                    email: result.user?.email,
+                    name: result.user?.displayName,
+
+
+                }
+                axiosPublic.post('/users', userInfo)
+                
+                .then(res=>{
+                    if(res.data.insertedId){
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: 'SignUp Successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                        
+                        navigate(location?.state ? location.state : '/login')
+                    }
+                    
+                })
+               
+               
             })
             .catch(err => {
-                alert(err.message)
+                Swal.fire({
+                    icon: "error",
+                    title: "Failed to Register",
+                    text: err.message
+                    
+                  });
             })
 
     }
@@ -135,7 +167,7 @@ const Register = () => {
         // const password = watch("password");
         const quality = calculatePasswordQuality(password);
         setPasswordQuality(quality)
-        console.log(quality)
+        
     }
 
 
@@ -228,7 +260,7 @@ const Register = () => {
                             </div>
                             <div>
                                 <p>Already Have an Account? <Link to={'/login'} className="text-green-600 font-semibold">Login Here</Link></p>
-
+                                    <SocialLogger></SocialLogger>
                             </div>
                         </form>
                     </div>
