@@ -48,7 +48,7 @@ const AuthProvider = ({children}) => {
             unSubscribe();
         }
 
-    },[axiosPublic])
+    },[])
 
     // signIn with google provider
 
