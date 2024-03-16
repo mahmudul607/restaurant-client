@@ -12,7 +12,7 @@ const Dashboard = () => {
     const [isAdmin] = useAdmin();
     return (
         <div className="flex ">
-            <div className="w-64 bg-gray-400 min-h-screen">
+            <div className="w-64 bg-gray-400 fixed h-full flex flex-col ">
                 <div className="font-logoFont text-red-500">
                     <h1 className="text-2xl font-extrabold p-4 mx-auto">Foods <br /><span className=" pl-8 text-black">Corner</span></h1>
                 </div>
@@ -120,7 +120,7 @@ const Dashboard = () => {
 
                 </ul>
             </div>
-            <div className="p-8 flex-1 ">
+            <div className="p-8 ml-64 flex-1 overflow-y-auto">
                 <Outlet></Outlet>
             </div>
 
