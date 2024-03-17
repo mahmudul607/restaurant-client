@@ -62,13 +62,13 @@ const Dashboard = () => {
                             </li>
                                 <li className="flex  gap-4">
 
-                                    <NavLink to={'/dashboard/reservation'}>
+                                    <NavLink to={'/dashboard/payment'}>
                                         <FaCalendar></FaCalendar>
                                         Reservation</NavLink>
                                 </li>
                                 <li className="flex  gap-4">
 
-                                    <NavLink to={'/dashboard/payment'}>
+                                    <NavLink to={'/dashboard/paymentHistory'}>
                                         <FaMoneyCheckAlt></FaMoneyCheckAlt>
                                         Payment History</NavLink>
                                 </li>

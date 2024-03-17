@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
+import { Link } from "react-router-dom";
 
 
 
@@ -56,7 +57,13 @@ const Cart = () => {
                 <div className="total text-4xl flex justify-between font-bold py-8">
                     <h2>Total Orders: {cart.length} </h2>
                     <h2>Total Price: {totalPrice}</h2>
+                   {
+                    cart.length ?  <Link to={"/dashboard/payment"}>
                     <button className="btn btn-primary">Pay</button>
+                    </Link>
+                     :
+                    <button disabled className="btn btn-primary">Pay</button>
+                   }
                 </div>
 
                 <div className="">

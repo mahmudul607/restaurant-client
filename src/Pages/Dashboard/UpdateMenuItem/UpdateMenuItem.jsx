@@ -3,14 +3,13 @@ import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { FaUtensils } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 
 const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const UpdateMenuItem = () => {
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
     const item = useLoaderData();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
@@ -43,7 +42,7 @@ const UpdateMenuItem = () => {
             const menuRes = await axiosSecure.patch(`/menu/${item._id}`, menuItems)
             if(menuRes.data.modifiedCount > 0){
                 // popup for success
-                reset();
+                // reset();
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -89,7 +88,7 @@ const UpdateMenuItem = () => {
                 <div className="label  font-bold">
                     <span className="label-text">Price*</span>
                 </div>
-                <input {...register("price", {require:true})} defaultValue={item.price} type="number" placeholder="Type here" className="input input-bordered w-full " />
+                <input {...register("price", {require:true})} defaultValue={item.price} type="text" placeholder="Type here" className="input input-bordered w-full " />
                 
             </label>
             </div>
@@ -106,7 +105,7 @@ const UpdateMenuItem = () => {
             
             <input {...register("imageURL")}  type="file" className="file-input w-full max-w-xs" />
 
-            <button className="btn  mt-4 max-w-xs">Update Item <FaUtensils></FaUtensils></button>
+            <button className="btn btn-outline  mt-4 max-w-xs mx-auto">Update Item </button>
         </form>
     </div>
 

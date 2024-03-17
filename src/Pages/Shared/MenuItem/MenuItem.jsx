@@ -6,7 +6,7 @@ const MenuItem = ({menu}) => {
 
     return (
         <div className="flex flex-row p-4 menu-items my-4">
-                        <div className="w-1/3">
+                        <div className="w-1/3 h-2/5">
                             <div
                                 className="  "
                             >
