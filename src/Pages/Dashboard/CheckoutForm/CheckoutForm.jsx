@@ -3,16 +3,19 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useCart from "../../../hooks/useCart";
 import { axiosSecure } from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
 
 
 const CheckoutForm = () => {
-    const [errorMessage, setErrorMessage] =useState();
-    const [clientSecret, setClientSecret] = useState();
+    const [errorMessage, setErrorMessage] =useState('');
+    const [clientSecret, setClientSecret] = useState('');
+    const [transactionId, setTransactionId] = useState('');
+    const {user} =useAuth();
     const stripe = useStripe();
     const elements = useElements();
     const [cart] = useCart();
     const totalPrice = cart.reduce((total, item)=> total + item.price ,0);
-    console.log(totalPrice);
+    console.log(cart);
 
 useEffect(()=>{
 
@@ -55,6 +58,39 @@ useEffect(()=>{
                 timer: 1500
               });
           }
+        //   confirm payment
+
+        const {paymentIntent, error:cardConfirmErr} = await stripe.confirmCardPayment(clientSecret, {
+            payment_method:{
+                card: card,
+                billing_details:{
+                    email: user?.email || 'anynomous',
+                    name: user?.displayName,
+                }
+            }
+        })
+        if(cardConfirmErr){
+            console.log(cardConfirmErr, 'Inside cardConfirm')
+            setErrorMessage(cardConfirmErr)
+        }else{
+            console.log('Inside cardConfirm paymentIntent', paymentIntent);
+            setTransactionId(paymentIntent.id);
+            // save payment data to the server 
+
+            const payment = {
+                email: user?.email,
+                name:user?.displayName,
+                transactionId: paymentIntent.id,
+                data: new Date(), // Todo update date according to utc using moment js
+                cartIds: cart.map(item => item._id),
+                foodIds: cart.map(item => item.foodId),
+                status: 'pending'
+            }
+            const res = await axiosSecure.post('/payments', payment)
+            console.log('save payments info', res)
+
+
+        }
 
     }
     return (
@@ -76,8 +112,13 @@ useEffect(()=>{
                 }}
             />
             <div className="text-red-600 mt-6">{errorMessage}</div>
+            <div>
+                {
+                    transactionId && <p>Your Transaction Id:<span  className="text-green-600">{transactionId}</span></p>
+                }
+            </div>
             <div className="text-center">
-            <button className="btn btn-primary mt-8  px-8" type="submit" disabled={!stripe && clientSecret }>
+            <button className="btn btn-primary mt-8  px-8" type="submit" disabled={!stripe && !clientSecret }>
                 Pay
             </button>
             </div>
