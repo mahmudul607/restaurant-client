@@ -41,7 +41,7 @@ const Dashboard = () => {
                                 </li>
                                 <li className="flex  gap-4">
 
-                                    <NavLink to={'/dashboard/manageBookings'}>
+                                    <NavLink to={'/dashboard/bookings'}>
                                     <FaBook></FaBook>
                                         Manage Bookings </NavLink>
                                 </li>

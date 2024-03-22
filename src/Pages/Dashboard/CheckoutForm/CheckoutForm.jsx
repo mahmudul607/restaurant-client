@@ -64,8 +64,8 @@ useEffect(()=>{
             payment_method:{
                 card: card,
                 billing_details:{
-                    email: user?.email || 'anynomous',
-                    name: user?.displayName,
+                    email: user?.email || 'anonymous',
+                    name: user?.displayName || 'anonymous',
                 }
             }
         })
@@ -84,7 +84,8 @@ useEffect(()=>{
                 data: new Date(), // Todo update date according to utc using moment js
                 cartIds: cart.map(item => item._id),
                 foodIds: cart.map(item => item.foodId),
-                status: 'pending'
+                status: 'pending',
+                billingStatus: 'paid',
             }
             const res = await axiosSecure.post('/payments', payment)
             console.log('save payments info', res)
