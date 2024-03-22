@@ -13,7 +13,7 @@ const CheckoutForm = () => {
     const {user} =useAuth();
     const stripe = useStripe();
     const elements = useElements();
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
     const totalPrice = cart.reduce((total, item)=> total + item.price ,0);
     console.log(cart);
 
@@ -89,6 +89,9 @@ useEffect(()=>{
             }
             const res = await axiosSecure.post('/payments', payment)
             console.log('save payments info', res)
+            if(res.data.paymentResult.insertedId){
+                refetch()
+            }
 
 
         }

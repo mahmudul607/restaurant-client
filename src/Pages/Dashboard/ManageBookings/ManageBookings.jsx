@@ -1,11 +1,14 @@
 
 import useBookings from "../../../hooks/useBookings";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
+import { FaCheckCircle } from "react-icons/fa";
+
 
 
 const ManageBookings = () => {
     const [bookings] = useBookings();
-    console.log(bookings)
+    console.log(bookings);
+    const totalItems = bookings.reduce((total, item) => total + item.foodIds.length,0)
     return (
         <div>
             <SectionTitle
@@ -14,8 +17,9 @@ const ManageBookings = () => {
 
             ></SectionTitle>
             <div>
-                <div className="p-8 text-3xl font-bold uppercase mt-8">
-                    <h2>Total Bookings: <span className="text-green-600"></span></h2>
+                <div className="p-8 flex justify-between text-3xl font-bold uppercase mt-8">
+                    <h2>Total Bookings: <span className="text-green-600">{bookings.length}</span></h2>
+                    <h2>Total Food Items: <span className="text-green-600">{totalItems}</span></h2>
                 </div>
                 <table className="table ">
                     {/* head */}
@@ -26,11 +30,11 @@ const ManageBookings = () => {
                             <th className="font-bold rounded-tl-2xl">
 
                             </th>
-                            <th className="font-bold ">Item Image</th>
-                            <th>Item Name</th>
-                            <th>price</th>
-                            <th >Update</th>
-                            <th className="rounded-tr-2xl">Delete</th>
+                            <th className="font-bold ">Client Name</th>
+                            <th>Client Email</th>
+                            <th>Booking Items</th>
+                            <th >Billing Status</th>
+                            <th className="rounded-tr-2xl">Status</th>
                         </tr>
 
 
@@ -45,21 +49,24 @@ const ManageBookings = () => {
 
                                 </th>
                                 <td>
-                                    <div className="flex items-center gap-3">
+                                    {/* <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src={item.image} alt="Avatar Tailwind CSS Component" />
+                                           
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> */}
+                                     {item.name || 'Client'}
                                 </td>
                                 <td>
 
-                                    {item.name}
+                                    {item.email}
 
                                 </td>
-                                <td>${item.price}</td>
+                                <td>{item.foodIds.length}</td>
+                                <td>{item.billingStatus}</td>
+                                <td>{item.status==='done'?  <FaCheckCircle className="text-2xl text-green-800"></FaCheckCircle>:<FaCheckCircle className="text-2xl"></FaCheckCircle>}</td>
                                 {/* <th>
                                     <Link
                                     to={`/dashboard/updateItem/${item._id}`}
