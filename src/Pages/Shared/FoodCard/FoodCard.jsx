@@ -32,8 +32,17 @@ const FoodCard = ({foodItem}) => {
                         Swal.fire({
                             title: "Added To Your Cart!",
                             text: "Your Selected Menu has been added.",
-                            icon: "success"
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 1500
                           });
+                        //   Swal.fire({
+                        //     position: "center",
+                        //     icon: "success",
+                        //     title: "our Selected Menu has been added.",
+                        //     showConfirmButton: false,
+                        //     timer: 1500
+                        //   });
                         //   refetch data after add product
                           refetch();
                           

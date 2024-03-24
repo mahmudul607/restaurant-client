@@ -15,15 +15,17 @@ const CheckoutForm = () => {
     const elements = useElements();
     const [cart, refetch] = useCart();
     const totalPrice = cart.reduce((total, item)=> total + item.price ,0);
-    console.log(cart);
+   
 
 useEffect(()=>{
 
+   if(totalPrice > 0){
     axiosSecure.post('/create-payment-intent', {price: totalPrice})
     .then(res =>{
         setClientSecret(res.data.clientSecret);
-        console.log(res.data);
+        // console.log(res.data);
     })
+   }
 
 },[totalPrice]);
 
@@ -46,7 +48,7 @@ useEffect(()=>{
 
         if(error){
             setErrorMessage(error.message)
-            console.log('[error]', error.message);
+            // console.log('[error]', error.message);
         } else {
             console.log('[PaymentMethod]', paymentMethod);
             setErrorMessage(null);
@@ -70,10 +72,11 @@ useEffect(()=>{
             }
         })
         if(cardConfirmErr){
-            console.log(cardConfirmErr, 'Inside cardConfirm')
-            setErrorMessage(cardConfirmErr)
+            // console.log(cardConfirmErr, 'Inside cardConfirm')
+            setErrorMessage(cardConfirmErr.message)
+           
         }else{
-            console.log('Inside cardConfirm paymentIntent', paymentIntent);
+            // console.log('Inside cardConfirm paymentIntent', paymentIntent);
             setTransactionId(paymentIntent.id);
             // save payment data to the server 
 
@@ -88,7 +91,7 @@ useEffect(()=>{
                 billingStatus: 'paid',
             }
             const res = await axiosSecure.post('/payments', payment)
-            console.log('save payments info', res)
+            // console.log('save payments info', res)
             if(res.data.paymentResult.insertedId){
                 refetch()
             }
@@ -122,7 +125,7 @@ useEffect(()=>{
                 }
             </div>
             <div className="text-center">
-            <button className="btn btn-primary mt-8  px-8" type="submit" disabled={!stripe && !clientSecret }>
+            <button className="btn btn-primary mt-8  px-8" type="submit" disabled={!stripe || !clientSecret || !(totalPrice>0)  }>
                 Pay
             </button>
             </div>
