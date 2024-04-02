@@ -94,6 +94,13 @@ useEffect(()=>{
             // console.log('save payments info', res)
             if(res.data.paymentResult.insertedId){
                 refetch()
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Your payment Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
             }
 
 

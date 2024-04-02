@@ -12,7 +12,7 @@ const AddItems = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
 
         const imageFile = {image: data.imageURL[0]}
 
@@ -21,7 +21,7 @@ const AddItems = () => {
                 "Content-Type":"multipart/form-data"
             }
         });
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.success){
             const menuItems ={
                 name: data.name,

@@ -19,6 +19,8 @@ import ManageItem from "../Pages/Dashboard/ManageItem/ManageItem";
 import UpdateMenuItem from "../Pages/Dashboard/UpdateMenuItem/UpdateMenuItem";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
+import ConfirmOrder from "../Pages/Dashboard/Cart/ConfirmOrder/ConfirmOrder";
+import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
 
 
   const Router = createBrowserRouter(
@@ -73,6 +75,14 @@ import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
           path:"bookings",
           element: <AdminRoute><ManageBookings></ManageBookings> </AdminRoute>
 
+        },
+        {
+          path:"myBooking",
+          element: <MyBooking></MyBooking>
+        },
+        {
+          path:"confirmOrder",
+          element:<ConfirmOrder></ConfirmOrder>
         },
 
         // admin routes

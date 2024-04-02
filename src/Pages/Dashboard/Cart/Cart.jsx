@@ -64,6 +64,9 @@ const Cart = () => {
                      :
                     <button disabled className="btn btn-primary">Pay</button>
                    }
+                   {
+                    cart.length ? <Link to={"/dashboard/confirmOrder"}><button className="btn btn-primary">Cash On Delivery</button></Link>:<button disabled className="btn btn-primary">Cash On Delivery</button>
+                   }
                 </div>
 
                 <div className="">

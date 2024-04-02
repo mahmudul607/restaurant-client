@@ -66,7 +66,7 @@ const ManageBookings = () => {
                                 </td>
                                 <td>{item.foodIds.length}</td>
                                 <td>{item.billingStatus}</td>
-                                <td>{item.status==='done'?  <FaCheckCircle className="text-2xl text-green-800"></FaCheckCircle>:<FaCheckCircle className="text-2xl"></FaCheckCircle>}</td>
+                                <td>{item.billingStatus==='paid'?  <FaCheckCircle className="text-2xl text-green-700"></FaCheckCircle>:<FaCheckCircle className="text-2xl"></FaCheckCircle>}</td>
                                 {/* <th>
                                     <Link
                                     to={`/dashboard/updateItem/${item._id}`}
