@@ -72,13 +72,13 @@ const FoodCard = ({foodItem}) => {
         
     }
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
-            <figure className="px-10 pt-10 h-1/2">
+        <div className="card lg:h-[500px] md:h-[500px] sm:h-[500px] h-[450px]  bg-base-100 shadow-xl">
+            <figure className="lg:px-10 px-4 pt-10 h-1/2">
                 <img src={image} alt="images" className="rounded-xl h-full w-full" />
-                
+                <p className="absolute top-12 right-16 bg-black text-white p-2">${price}</p>
             </figure>
-            <p className="absolute top-12 right-16 bg-black text-white p-2">${price}</p>
-            <div className="card-body items-center text-center">
+           
+            <div className="card-body h-1/2 items-center text-center">
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions">

@@ -7,7 +7,7 @@ const Recommends = () => {
     return (
         <div>
             <SectionTitle subHeader={"Should Try"} header={"CHEF RECOMMENDS"}></SectionTitle>
-            <div className='grid ms:grid-cols-1 grid-cols-3'>
+            <div className='grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
 
                 <div className="card  bg-base-100 shadow-xl">
                     <figure className="px-10 pt-10">

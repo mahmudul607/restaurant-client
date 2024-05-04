@@ -8,14 +8,14 @@ import useCart from "../../../hooks/useCart";
 const NavBar = () => {
     const { user, logOutUser } = useContext(AuthContext);
     const [cart] = useCart();
-    const totalPrice = cart.reduce((total, item)=> total + item.price , 0);
+    const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
     const navOptions = <>
         <li><Link to={'/'}>Home</Link></li>
         <li><Link to={'/menu'}>Our Menu</Link></li>
         <li><Link to={'/food/offer'}>Our Foods</Link></li>
         <li><Link to={'/'}>About</Link></li>
-        <li><Link to={'/booking'}>Bookings</Link></li>
+        
 
 
 
@@ -26,7 +26,7 @@ const NavBar = () => {
         logOutUser();
     }
     return (
-        <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl  bg-black text-white">
+        <div className="navbar w-screen fixed z-10 bg-opacity-30 max-w-screen-xl  bg-black text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -36,10 +36,43 @@ const NavBar = () => {
                         {
                             navOptions
                         }
+                        {/* responsive avatar start */}
+                            <div className="min-[301px]:hidden">
+                                {
+                                    user ? <div className="dropdown dropdown-end ">
+                                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                            <div className="w-10 rounded-full">
+                                                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                                            </div>
+                                        </div>
+                                        <ul tabIndex={0} className="menu menu-sm   mt-3 z-[1] p-2 shadow bg-black bg-opacity-50 text-white rounded-box ">
+                                            <li>
+                                                <a className="justify-between">
+
+                                                    {user.displayName}
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="justify-between">
+
+                                                    {user.email}
+
+                                                </a>
+                                            </li>
+                                            <li><a>Settings</a></li>
+                                            <li><button className="btn btn-outline mx-2 text-white" onClick={handleLogOut}>Logout</button></li>
+                                        </ul>
+                                    </div>
+                                        :
+                                        <><Link className="btn btn-outline text-white" to={'/login'}>Login</Link></>
+                                }
+                            </div>
+                        {/* responsive avatar end */}
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-4xl mb-2 ">
-                    <h1 className="text-2xl font-extrabold ">Foods<br/> <span className="text-yellow-600 pl-8">Corner</span></h1>
+                    <h1 className="text-2xl font-extrabold ">Foods<br /> <span className="text-yellow-600 pl-8">Corner</span></h1>
                 </a>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -69,35 +102,37 @@ const NavBar = () => {
                         </div>
                     </div>
                 </div>
-                {
-                    user ? <div className="dropdown dropdown-end ">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                <div className="max-[300px]:hidden">
+                    {
+                        user ? <div className="dropdown dropdown-end ">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                                </div>
                             </div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black bg-opacity-50 text-white rounded-box ">
+                                <li>
+                                    <a className="justify-between">
+
+                                        {user.displayName}
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a className="justify-between">
+
+                                        {user.email}
+
+                                    </a>
+                                </li>
+                                <li><a>Settings</a></li>
+                                <li><button className="btn btn-outline mx-2 text-white" onClick={handleLogOut}>Logout</button></li>
+                            </ul>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black bg-opacity-50 text-white rounded-box ">
-                            <li>
-                                <a className="justify-between">
-
-                                    {user.displayName}
-
-                                </a>
-                            </li>
-                            <li>
-                                <a className="justify-between">
-
-                                    {user.email}
-
-                                </a>
-                            </li>
-                            <li><a>Settings</a></li>
-                            <li><button className="btn btn-outline mx-2 text-white" onClick={handleLogOut}>Logout</button></li>
-                        </ul>
-                    </div>
-                        :
-                        <><Link className="btn btn-outline text-white" to={'/login'}>Login</Link></>
-                }
+                            :
+                            <><Link className="btn btn-outline text-white" to={'/login'}>Login</Link></>
+                    }
+                </div>
             </div>
         </div>
     );

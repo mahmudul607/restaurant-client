@@ -23,10 +23,11 @@ const ConfirmOrder = () => {
             name: user?.displayName,
             // transactionId: paymentIntent.id,
             data: new Date(), // Todo update date according to utc using moment js
+            foodImages: cart.map(item => item.image),
             cartIds: cart.map(item => item._id),
             foodIds: cart.map(item => item.foodId),
             status: 'pending',
-            billingStatus: 'paid',
+            billingStatus: 'Unpaid',
         }
         const res = await axiosSecure.post('/cashAndDelivery', orderInfo)
         // console.log('save payments info', res)

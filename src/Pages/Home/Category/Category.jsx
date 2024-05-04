@@ -10,17 +10,41 @@ import cat3 from '../../../assets/home/slide3.jpg'
 import cat4 from '../../../assets/home/slide4.jpg'
 import cat5 from '../../../assets/home/slide5.jpg'
 import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
+import { useEffect, useState } from 'react';
 
 const Category = () => {
-    return (
-        <section>
-        <SectionTitle
+  const [slidesPerView, setSlidesPerView] = useState(4);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768 && window.innerWidth > 640) {
+        setSlidesPerView(3);
+      }  else if(window.innerWidth < 640 && window.innerWidth > 350){
+        setSlidesPerView(2);
+
+      }else if (window.innerWidth <= 350) {
+        setSlidesPerView(1);
+      } else {
+        setSlidesPerView(4);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Set initial slides per view on component mount
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  return (
+    <section>
+      <SectionTitle
         subHeader={"From 11:00am to 10:00pm"}
         header={"ORDER ONLINE"}
-        ></SectionTitle>
+      ></SectionTitle>
       <Swiper
-        slidesPerView={4}
-        loop= {true}
+        slidesPerView={slidesPerView}
+        loop={true}
         spaceBetween={30}
         pagination={{
           clickable: true,
@@ -29,30 +53,30 @@ const Category = () => {
         className="mySwiper  text-white  mb-6"
       >
         <SwiperSlide>
-            <img src={cat1} alt="" />
-            <p className='uppercase text-2xl font-bold -mt-8 text-center'>Salads</p>
+          <img src={cat1} alt="" />
+          <p className='uppercase text-2xl font-bold -mt-8 text-center'>Salads</p>
         </SwiperSlide>
-        
+
         <SwiperSlide>
-            <img src={cat3} alt="" />
-            <p className='uppercase text-2xl font-bold -mt-8 text-center'>Pizzas</p>
-        </SwiperSlide>
-        <SwiperSlide>
-            <img src={cat4} alt="" />
-            <p className='uppercase text-2xl font-bold -mt-8 text-center'>Soups</p>
+          <img src={cat3} alt="" />
+          <p className='uppercase text-2xl font-bold -mt-8 text-center'>Pizzas</p>
         </SwiperSlide>
         <SwiperSlide>
-            <img src={cat2} alt="" />
-            <p className='uppercase text-2xl font-bold -mt-8 text-center'>Desserts</p>
+          <img src={cat4} alt="" />
+          <p className='uppercase text-2xl font-bold -mt-8 text-center'>Soups</p>
         </SwiperSlide>
         <SwiperSlide>
-            <img src={cat5} alt="" />
-            <p className='uppercase text-2xl font-bold -mt-8 text-center'>Salads</p>
+          <img src={cat2} alt="" />
+          <p className='uppercase text-2xl font-bold -mt-8 text-center'>Desserts</p>
         </SwiperSlide>
-        
+        <SwiperSlide>
+          <img src={cat5} alt="" />
+          <p className='uppercase text-2xl font-bold -mt-8 text-center'>Salads</p>
+        </SwiperSlide>
+
       </Swiper>
     </section>
-    );
+  );
 };
 
 export default Category;

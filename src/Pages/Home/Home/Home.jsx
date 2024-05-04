@@ -24,7 +24,7 @@ const Home = () => {
             <Cover coverBg={serviceBannerBg} coverTitle={"Bistro Boss"}></Cover>
             <PopularMenu></PopularMenu>
             <div className="bg-black w-full h-[200px] text-center my-2">
-                <p className="text-white p-16 text-6xl font-serif ">Call Us: 01797692607</p>
+                <p className="text-white p-16 lg:text-6xl md:text-3xl sm:textarea-2xl font-serif ">Call Us: 01797692607</p>
             </div>
             <Recommends></Recommends>
             <FeatureMenu></FeatureMenu>
