@@ -21,6 +21,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
 import ConfirmOrder from "../Pages/Dashboard/Cart/ConfirmOrder/ConfirmOrder";
 import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
+import About from "../Pages/About/About";
 
 
   const Router = createBrowserRouter(
@@ -38,6 +39,11 @@ import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
         {
           path: "/menu",
           element: <Menu></Menu>
+        },
+        {
+          path: "/about",
+          element: <About></About>
+
         },
         {
           path: "/food/:category",

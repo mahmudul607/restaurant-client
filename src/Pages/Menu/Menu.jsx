@@ -17,7 +17,9 @@ const Menu = () => {
                 <title>Foods Corner | Menu</title>
 
             </Helmet>
+            
             <Cover coverBg={banner3} coverTitle="Our Menu"></Cover>
+         
             {/* offer menu items */}
             <SectionTitle subHeader="Don't Miss" header="Today's Offer"></SectionTitle>
             <MenuCategory items={offers} ></MenuCategory>

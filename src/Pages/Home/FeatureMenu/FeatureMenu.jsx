@@ -6,7 +6,9 @@ const FeatureMenu = () => {
     return (
         <section>
             <div className='my-8 py-16 bg-fixed featureMenu text-white'>
-                <SectionTitle  subHeader={"Check it out"} header={"OUR Feature MENU"}></SectionTitle>
+               
+                <SectionTitle  subHeader={"Check it out"} header={"OUR Feature MENU"}></SectionTitle> 
+                
                 <div className='flex p-8  flex-col xxs:flex-col md:flex-row lg:flex-row sm:flex-col xs:flex-col justify-center items-center py-16 md:px-20 lg:px-20 sm:px-8 xxs:p-2'>
                     <div className='xs:pb-4 xxs:pb-4 sm:pb-4'>
                         <img className='' src={featureImg} alt="" />

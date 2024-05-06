@@ -27,11 +27,13 @@ const Foods = () => {
              <Helmet>
             <title>Foods Corner | Our Foods</title>
             </Helmet>
+            
             <Cover coverBg={foodsImg} coverTitle="Our Foods"></Cover>
+          
 
             <div className="py-16 text-center">
                 <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                    <TabList className={'capitalize'}>
+                    <TabList className={'capitalize max-md:text-xs'}>
                         <Tab>offers</Tab>
                         <Tab>desserts</Tab>
                         <Tab>pizzas</Tab>

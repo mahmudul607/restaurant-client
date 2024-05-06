@@ -72,17 +72,17 @@ const FoodCard = ({foodItem}) => {
         
     }
     return (
-        <div className="card lg:h-[500px] md:h-[500px] sm:h-[500px] h-[450px]  bg-base-100 shadow-xl">
+        <div className="card lg:h-[500px] bg-base-100 shadow-xl max-sm:pb-12">
             <figure className="lg:px-10 px-4 pt-10 h-1/2">
                 <img src={image} alt="images" className="rounded-xl h-full w-full" />
-                <p className="absolute top-12 right-16 bg-black text-white p-2">${price}</p>
+                <p className="absolute top-12 right-16 bg-black text-white p-2 max-sm:p-1 max-sm:text-xs">${price}</p>
             </figure>
            
-            <div className="card-body h-1/2 items-center text-center">
-                <h2 className="card-title">{name}</h2>
-                <p>{recipe}</p>
-                <div className="card-actions">
-                    <button onClick={()=>{handleAddToCart(foodItem)}} className="btn btn-outline border-0 border-b-4 text-[#BB8506] hover:text-[#BB8506]">Add to Cart</button>
+            <div className="card-body max-sm:px-2    h-1/2 items-center text-center">
+                <h2 className="card-title max-sm:text-xs">{name}</h2>
+                <p className="text-xs ">{recipe}</p>
+                <div className="justify-center w-full card-actions">
+                    <button onClick={()=>{handleAddToCart(foodItem)}} className="btn btn-outline border-0 border-b-4 max-sm:text-xs text-[#BB8506] hover:text-[#BB8506]">Add to Cart</button>
                 </div>
             </div>
         </div>

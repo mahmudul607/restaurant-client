@@ -73,7 +73,7 @@ const FoodTab = ({ items }) => {
                
                 key={page +1}
                 >
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-2  gap-2 max-sm:gap-8">
                         {
                             showMenu.map(item => <FoodCard foodItem={item} key={item._id}></FoodCard>)
                         }

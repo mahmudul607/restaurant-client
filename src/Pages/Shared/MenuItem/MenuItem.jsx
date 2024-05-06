@@ -15,7 +15,7 @@ const MenuItem = ({menu}) => {
                         </div>
                         <div className='min-[640px]:w-2/3 w-full'>
                             <h2 className=' font-bold text-lg'>{name} ------------------</h2>
-                            <p>{recipe}</p>
+                            <p className='max-sm:text-xs'>{recipe}</p>
                         </div>
                         <div className='text-[#D99904] font-bold text-lg'>${price}</div>
 
