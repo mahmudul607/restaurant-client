@@ -23,11 +23,11 @@ const MyBooking = () => {
             </div>
 
             <h2>foods:{myBookings.length}</h2>
-            <div className="flex  w-full gap-4 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  w-full gap-4 ">
 
                 {
                     orderItems.map((item, index) =>
-                        <div className="card w-1/2 bg-base-100 shadow-xl image-full" key={item._id}>
+                        <div className="card w-full bg-base-100 shadow-xl image-full" key={item._id}>
                             <div className="card-actions justify-between z-20 p-2">
                                 <h2 className="text-white">{index+1}</h2>
                                 <button className="btn btn-square btn-sm">

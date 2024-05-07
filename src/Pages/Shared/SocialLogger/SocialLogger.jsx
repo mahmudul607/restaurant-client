@@ -48,10 +48,10 @@ const SocialLogger = () => {
     
         }
     return (
-        <div className='flex pt-6 gap-8 justify-center text-2xl'>
-            <span className="w-12 h-12 border rounded-full cursor-pointer border-black p-[10px] text-[#4285f4]" onClick={handleSignInWithGooglePopup}><FaGoogle /></span>
-            <span className="w-12 h-12 border rounded-full cursor-pointer border-black p-[10px] text-[#0866ff]"> <FaFacebookF /></span>
-            <span className="w-12 h-12 border rounded-full cursor-pointer border-black p-[10px]"> <FaGithub /></span>
+        <div className='flex pt-6 gap-2 sm:gap-8 justify-center sm:text-2xl text-xl'>
+            <span className="sm:w-12 w-8 h-8 sm:h-12  border rounded-full cursor-pointer border-black p-[4px] sm:p-[10px] text-[#4285f4]" onClick={handleSignInWithGooglePopup}><FaGoogle /></span>
+            <span className="sm:w-12 w-8 h-8 sm:h-12  border rounded-full cursor-pointer border-black p-[4px] sm:p-[10px] text-[#4285f4]"> <FaFacebookF /></span>
+            <span className="sm:w-12 w-8 h-8 sm:h-12   border rounded-full cursor-pointer border-black p-[4px] sm:p-[10px] text-[#4285f4]"> <FaGithub /></span>
         </div>
     );
 };

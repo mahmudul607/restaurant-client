@@ -155,9 +155,9 @@ else if(loginError) {
                     </div>
                     <div className="card w-full  md:w-3/5   shadow-2xl bg-base-100 pb-4 ">
                         <div className="text-center pt-2">
-                            <h1 className="text-4xl font-bold">Login</h1>
+                            <h1 className="text-4xl font-bold max-sm:text-xl">Login</h1>
                         </div>
-                        <form className="card-body py-0" onSubmit={handleSubmit(onSubmit)}>
+                        <form className="card-body  sm:text-sm text-xs  py-0" onSubmit={handleSubmit(onSubmit)}>
 
                             <div className="form-control">
                                 <label className="label">
@@ -193,7 +193,7 @@ else if(loginError) {
                                         <LoadCanvasTemplate /></span>
                                 </label>
                                
-                                    <input type="text" onBlur={handleCaptcha} placeholder="Captcha" name="captcha" id='user_captcha_input' className="input input-bordered w-full" required />
+                                    <input type="text" onBlur={handleCaptcha} placeholder="Captcha" name="captcha" id='user_captcha_input' className="input input-bordered w-full sm:text-sm text-xs" required />
                                   
                                
                                 <label className="label">
@@ -204,7 +204,7 @@ else if(loginError) {
 
                                 <input type="submit" className="btn btn-primary" disabled={disabled} value="Submit" />
                             </div>
-                            <div>
+                            <div className='sm:text-sm text-xs'>
                                 <p>New here? <Link to={'/register'} className='text-green-600 font-semibold'>Create a New Account</Link></p>
                                 <SocialLogger></SocialLogger>
                             </div>

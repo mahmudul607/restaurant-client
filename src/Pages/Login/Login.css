@@ -26,6 +26,12 @@
     .login .hero .card-body, .register .hero .card-body {
         padding: 0;
         width: 100%;
+        font-size: smaller;
+    }
+    .login .hero .card-body input, .register .hero .card-body input{
+        width: 100%;
+        
+
     }
     
 }

@@ -180,7 +180,7 @@ const axiosPublic = useAxiosPublic();
             <Helmet>
                 <title>Foods Corner | Sign Up</title>
             </Helmet>
-            <div className="hero min-h-screen xxs:block pt-4 bg-base-200 ">
+            <div className="hero  min-h-screen xxs:block pt-4 bg-base-200 ">
                 <div className="hero-content pb-16 flex-col-reverse md:flex-row-reverse border-box box-content  shadow-2xl   md:mx-24 md:px-8 mx-2 px-2 ">
                     <div className="text-center md:w-2/5 md:text-left hidden md:block">
 
@@ -188,7 +188,7 @@ const axiosPublic = useAxiosPublic();
                     </div>
                     <div className="card w-full md:pt-4  md:w-3/5  shadow-2xl bg-base-100 pb-24 ">
                         <div className="text-center pt-2">
-                            <h1 className="text-4xl font-bold">Sign Up</h1>
+                            <h1 className="sm:text-4xl text-xl font-bold">Sign Up</h1>
                         </div>
                         <form className="card-body py-0" onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control">
