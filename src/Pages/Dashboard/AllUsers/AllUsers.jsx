@@ -85,13 +85,13 @@ const AllUsers = () => {
                 subHeader="How Many?"
                 header="Manage All Users"
             > </SectionTitle>
-            <div className="text-2xl p-4 my-4">All Users:{users.length}</div>
+            <div className="sm:text-2xl text-xs p-4 my-4">All Users:{users.length}</div>
             <div>
                
                 <div className="overflow-x-auto">
                     <table className="table table-zebra">
                         {/* head */}
-                        <thead className="bg-gray-400 text-lg py-4">
+                        <thead className="bg-gray-400 sm:text-lg text-xs py-4">
                             <tr className="uppercase">
                                 <th className="rounded-tl-2xl"></th>
                                 <th>Name</th>
@@ -110,14 +110,14 @@ const AllUsers = () => {
                         <td>
                              {
                                 user.role === 'admin'? "Admin":
-                                <button className="btn btn-ghost bg-gray-400" onClick={()=>handleMakeAdmin(user)}>
+                                <button className="btn  sm:btn-md btn-sm btn-ghost bg-gray-400" onClick={()=>handleMakeAdmin(user)}>
                                 <FaUsers className="text-green-700 text-2xl "></FaUsers>
                                 </button>
                              }
                         </td>
                         <td>
-                            <button className="btn btn-ghost bg-red-500" onClick={()=>handleDelete(user)}>
-                                <RiDeleteBin6Line className="text-white text-2xl"></RiDeleteBin6Line>
+                            <button className="btn btn-sm sm:btn-md btn-ghost bg-red-500" onClick={()=>handleDelete(user)}>
+                                <RiDeleteBin6Line className="text-white  sm:text-2xl text-xl"></RiDeleteBin6Line>
                             </button>
                         </td>
                     </tr> )

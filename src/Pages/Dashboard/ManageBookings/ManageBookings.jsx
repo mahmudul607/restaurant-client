@@ -17,20 +17,20 @@ const ManageBookings = () => {
 
             ></SectionTitle>
             <div>
-                <div className="p-8 flex justify-between text-3xl font-bold uppercase mt-8">
+                <div className="p-8 flex sm:flex-row flex-col justify-between sm:text-3xl text-sm font-bold uppercase mt-8">
                     <h2>Total Bookings: <span className="text-green-600">{bookings.length}</span></h2>
                     <h2>Total Food Items: <span className="text-green-600">{totalItems}</span></h2>
                 </div>
                 <table className="table ">
                     {/* head */}
-                    <thead className="uppercase text-lg font-bold bg-gray-400 text-black ">
+                    <thead className="uppercase sm:text-lg text-xs font-bold bg-gray-400 text-black ">
 
 
                         <tr className="">
-                            <th className="font-bold rounded-tl-2xl">
+                            <th className="rounded-tl-2xl">
 
                             </th>
-                            <th className="font-bold ">Client Name</th>
+                            <th className="">Client Name</th>
                             <th>Client Email</th>
                             <th>Booking Items</th>
                             <th >Billing Status</th>

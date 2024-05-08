@@ -54,32 +54,36 @@ const Cart = () => {
                 ></SectionTitle>
             </div>
             <div className="cart-details">
-                <div className="total text-4xl flex justify-between font-bold py-8">
-                    <h2>Total Orders: {cart.length} </h2>
-                    <h2>Total Price: {totalPrice}</h2>
-                   {
+                <div className="total lg:text-4xl md:text-xl sm:text-md text-xs flex sm:flex-row flex-col justify-between font-bold py-8">
+                   <div>
+                   <h2>Total Orders: {cart.length} </h2>
+                    <h2>Total Price: ${totalPrice}</h2>
+                   </div>
+                  <div>
+                  {
                     cart.length ?  <Link to={"/dashboard/payment"}>
-                    <button className="btn btn-primary">Pay</button>
+                    <button className="btn text-xs btn-primary mr-2 mb-2">Pay</button>
                     </Link>
                      :
-                    <button disabled className="btn btn-primary">Pay</button>
+                    <button disabled className="btn btn-primary mr-2 mb-2">Pay</button>
                    }
                    {
-                    cart.length ? <Link to={"/dashboard/confirmOrder"}><button className="btn btn-primary">Cash On Delivery</button></Link>:<button disabled className="btn btn-primary">Cash On Delivery</button>
+                    cart.length ? <Link to={"/dashboard/confirmOrder"}><button className="btn text-xs px-2 btn-primary">Cash On Delivery</button></Link>:<button disabled className="btn btn-primary">Cash On Delivery</button>
                    }
+                  </div>
                 </div>
 
                 <div className="">
-                    <table className="table ">
+                    <table className="table sm:text-lg text-[12px]">
                         {/* head */}
-                        <thead className="uppercase text-lg font-bold bg-gray-400 text-black ">
+                        <thead className=" uppercase sm:text-lg text-[10px]  bg-gray-400 text-black ">
 
 
                             <tr className="">
-                                <th className="font-bold rounded-tl-2xl">
+                                <th className=" rounded-tl-2xl">
 
                                 </th>
-                                <th className="font-bold ">Item Image</th>
+                                <th className=" ">Item Image</th>
                                 <th>Item Name</th>
                                 <th>price</th>
                                 <th className="rounded-tr-2xl">Action</th>
@@ -90,14 +94,14 @@ const Cart = () => {
                         <tbody>
                             {/* row 1 */}
                             {
-                                cart.map((item, index) => <tr key={item._id}>
+                                cart.map((item, index) => <tr className="" key={item._id}>
                                     <th>
                                         
                                             {index + 1}
                                         
                                     </th>
                                     <td>
-                                        <div className="flex items-center gap-3">
+                                        <div className="flex items-center sm:gap-3 gap-2">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle w-12 h-12">
                                                     <img src={item.image} alt="Avatar Tailwind CSS Component" />

@@ -54,12 +54,12 @@ const ManageItem = () => {
 
             ></SectionTitle>
             <div>
-                <div className="p-8 text-3xl font-bold uppercase mt-8">
+                <div className="p-8 sm:text-3xl text-sm  font-bold uppercase mt-8">
                     <h2>Total Items: <span className="text-green-600">{menu.length}</span></h2>
                 </div>
                 <table className="table ">
                     {/* head */}
-                    <thead className="uppercase text-lg font-bold bg-gray-400 text-black ">
+                    <thead className="uppercase sm:text-sm md:text-lg text-xs font-bold bg-gray-400 text-black ">
 
 
                         <tr className="">

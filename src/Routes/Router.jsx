@@ -22,6 +22,10 @@ import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
 import ConfirmOrder from "../Pages/Dashboard/Cart/ConfirmOrder/ConfirmOrder";
 import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
 import About from "../Pages/About/About";
+import Profile from "../Pages/Dashboard/Profile/Profile";
+import AdminProfle from "../Pages/Dashboard/AdminProfile/AdminProfle";
+import AddReview from "../Pages/Dashboard/AddReview/AddReview";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
 
   const Router = createBrowserRouter(
@@ -90,6 +94,20 @@ import About from "../Pages/About/About";
           path:"confirmOrder",
           element:<ConfirmOrder></ConfirmOrder>
         },
+        {
+          path: "user",
+          element: <Profile></Profile>
+        },
+        {
+          path: "review",
+          element: <AddReview></AddReview>
+
+        },
+        {
+          path: "paymentHistory",
+          element: <PaymentHistory></PaymentHistory>
+
+        },
 
         // admin routes
 
@@ -110,6 +128,10 @@ import About from "../Pages/About/About";
         path:"updateItem/:id",
         element: <AdminRoute><UpdateMenuItem></UpdateMenuItem></AdminRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
+      },
+      {
+        path: "admin",
+        element: <AdminProfle></AdminProfle>
       }
       ]
     }
