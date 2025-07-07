@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 
 
 export const  axiosSecure = axios.create({
-    baseURL: "http://localhost:5000"
+    baseURL: "https://food-corner-bongo.vercel.app"
 
 })
 const useAxiosSecure = () => {

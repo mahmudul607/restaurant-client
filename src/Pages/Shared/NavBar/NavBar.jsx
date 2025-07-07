@@ -125,6 +125,7 @@ const NavBar = () => {
 
                                     </a>
                                 </li>
+                                <Link to={'/dashboard/user'} className="btn btn-sm btn-primary btn-block">Details</Link>
                                 <li><a>Settings</a></li>
                                 <li><button className="btn btn-outline mx-2 text-white" onClick={handleLogOut}>Logout</button></li>
                             </ul>

@@ -119,9 +119,9 @@ const Dashboard = () => {
                         </li>
                         <li className="flex  gap-4">
 
-                            <NavLink to={'/contact'}>
+                            <NavLink to={'/about'}>
                                 <MdContacts className="sm:text-sm text-xl " title="My Booking"></MdContacts>
-                                <span className="sm:block hidden">My Booking</span></NavLink>
+                                <span className="sm:block hidden">About</span></NavLink>
                         </li>
 
                     </ul>

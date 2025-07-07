@@ -127,7 +127,7 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
       {
         path:"updateItem/:id",
         element: <AdminRoute><UpdateMenuItem></UpdateMenuItem></AdminRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
+        loader: ({params}) => fetch(`https://food-corner-bongo.vercel.app/menu/${params.id}`)
       },
       {
         path: "admin",

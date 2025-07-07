@@ -16,7 +16,7 @@ const FoodTab = ({ items }) => {
     const itemsPerPage = 6;
     const [totalCount, setTotalCount] = useState(0)
     useEffect(()=>{
-        fetch(`http://localhost:5000/menu/category/${items}`)
+        fetch(`https://food-corner-bongo.vercel.app/menu/category/${items}`)
         .then(res => res.json())
         .then(data =>{
             setTotalCount(data.length);
@@ -26,7 +26,7 @@ const FoodTab = ({ items }) => {
    
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/menu/category/${items}?page=${currentPage-1}&size=${itemsPerPage}`,{
+        fetch(`https://food-corner-bongo.vercel.app/menu/category/${items}?page=${currentPage-1}&size=${itemsPerPage}`,{
             method: 'GET',
             headers:{
                 contentType: 'application/json'
